@@ -1,9 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
 
-// import DrawingDetails from "../DrawingDetails/DrawingDetails";
 import NavigationBar from "../NavigationBar/NavigationBar";
 import SliderHeader from "../SliderHeader/SliderHeader";
 import HomePage from "../pages/HomePage/HomePage";
+import AboutPage from "../pages/AboutPage/AboutPage";
+import SchedulePage from '../pages/SchedulePage/SchedulePage';
+import GalleryPage from '../pages/GalleryPage/GalleryPage';
+import ContactsPage from '../pages/ContactsPage/ContactsPage';
 
 function App() {
     return (
@@ -14,7 +17,10 @@ function App() {
 
                 <Routes>
                     <Route path="/" element={<HomePage />} />
-                    {/* <Route path="/about" element={<HomePage />} /> */}
+                    <Route path="/about" element={<AboutPage />} />
+                    <Route path="/schedule" element={<SchedulePage />} />
+                    <Route path="/gallery" element={<GalleryPage />} />
+                    <Route path="/contacts" element={<ContactsPage />} />
                 </Routes>
             </div>
         </main>
