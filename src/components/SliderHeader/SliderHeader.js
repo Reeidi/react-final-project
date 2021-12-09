@@ -9,7 +9,7 @@ import slider3 from "../../images/slider-3.jpg";
 export default function SliderHeader() {
     return (
         <header className={styles.header}>
-            <h1>
+            <h1 className={styles.topMargin}>
                 <a href="/">
                     <img src={logo} />
                 </a>
