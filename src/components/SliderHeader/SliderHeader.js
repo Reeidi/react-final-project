@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import styles from "./SliderHeader.module.css";
 import logo from "../../images/logo.png";
 import slider1 from "../../images/slider-1.jpg";
@@ -24,11 +26,11 @@ export default function SliderHeader() {
                     <a href="#" className="prev"></a><a href="#" className="next"></a>
                 </div>
                 <ul className="menu">
-                    <li><a href="/" className="clr-1">Home</a></li>
-                    <li><a href="about" className="clr-2">About</a></li>
-                    <li><a href="schedule" className="clr-3">Schedule</a></li>
-                    <li><a href="gallery" className="clr-4">Gallery</a></li>
-                    <li><a href="contacts" className="clr-5">Contacts</a></li>
+                    <li><Link className="clr-1" to="/">Home</Link></li>
+                    <li><Link className="clr-2" to="about">About</Link></li>
+                    <li><Link className="clr-3" to="schedule">Schedule</Link></li>
+                    <li><Link className="clr-4" to="gallery">Gallery</Link></li>
+                    <li><Link className="clr-5" to="contacts">Contacts</Link></li>
                 </ul>
             </nav>
         </header>
