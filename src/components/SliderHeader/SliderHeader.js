@@ -24,11 +24,11 @@ export default function SliderHeader() {
                     <a href="#" className="prev"></a><a href="#" className="next"></a>
                 </div>
                 <ul className="menu">
-                    <li><a href="index.html" className="clr-1">Home</a></li>
-                    <li><a href="about.html" className="clr-2">About</a></li>
-                    <li><a href="schedule.html" className="clr-3">Schedule</a></li>
-                    <li><a href="gallery.html" className="clr-4">Gallery</a></li>
-                    <li><a href="contacts.html" className="clr-5">Contacts</a></li>
+                    <li><a href="/" className="clr-1">Home</a></li>
+                    <li><a href="about" className="clr-2">About</a></li>
+                    <li><a href="schedule" className="clr-3">Schedule</a></li>
+                    <li><a href="gallery" className="clr-4">Gallery</a></li>
+                    <li><a href="contacts" className="clr-5">Contacts</a></li>
                 </ul>
             </nav>
         </header>
