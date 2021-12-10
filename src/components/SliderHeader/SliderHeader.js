@@ -10,9 +10,9 @@ export default function SliderHeader() {
     return (
         <header className={styles.header}>
             <h1 className={styles.topMargin}>
-                <a href="/">
+                <Link to="/">
                     <img src={logo} />
-                </a>
+                </Link>
             </h1>
             <nav className={styles.nav}>
                 <div id="slide">
@@ -23,7 +23,8 @@ export default function SliderHeader() {
                             <li><img src={slider3} alt="" /></li>
                         </ul>
                     </div>
-                    <a href="#" className="prev"></a><a href="#" className="next"></a>
+                    <a href="#" className="prev"></a>
+                    <a href="#" className="next"></a>
                 </div>
                 <ul className="menu">
                     <li><Link className="clr-1" to="/">Home</Link></li>
