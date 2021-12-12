@@ -19,9 +19,14 @@ export default function Register() {
                         <input type="text" name="lastName" id="lastName" className={styles.input} />
                         <strong className="clear"></strong>
                     </label>
+                    <label htmlFor="email" className={styles.label}>
+                        <strong className={styles.labelStrong}>Email:</strong>
+                        <input type="text" name="email" id="email" className={styles.input} />
+                        <strong className="clear"></strong>
+                    </label>
                     <label htmlFor="age" className={styles.label}>
                         <strong className={styles.labelStrong}>Age:</strong>
-                        <input type="text" name="age" id="age" className={styles.input} />
+                        <input type="number" name="age" id="age" className={styles.input} />
                         <strong className="clear"></strong>
                     </label>
                     <label htmlFor="password" className={styles.label}>
@@ -48,5 +53,9 @@ export default function Register() {
 async function submitHandler(eventInfo) {
     eventInfo.preventDefault();
 
-    console.dir('submitting');
+    let formData = new FormData(eventInfo.currentTarget);
+    let { firstName, lastName, email, age, password, repeatPassword } = Object.fromEntries(formData);
+
+    let result = await userService.register(firstName, lastName, email, age, password, repeatPassword );
+    console.log(result);
 }

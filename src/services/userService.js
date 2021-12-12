@@ -1,8 +1,8 @@
 import { makeGetRequest, makePostRequest } from "../helpers/serverCommunication.js";
 import { loginUserUrl, logoutUserUrl, registerUserUrl } from "../constants.js";
 
-export async function register(firstName, lastName, email, password, repeatPassword) {
-    const result = await makePostRequest(registerUserUrl, { firstName, lastName, email, password, repeatPassword });
+export async function register(firstName, lastName, email, age, password, repeatPassword) {
+    const result = await makePostRequest(registerUserUrl, { firstName, lastName, email, age, password, repeatPassword });
 
     if (result.hasOwnProperty('accessToken')) {
         sessionStorage.setItem('userId', result._id);
