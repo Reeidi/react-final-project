@@ -4,36 +4,21 @@ import styles from './NavigationBar.module.css';
 
 export default function NavigationBar() {
     return (
-        <nav className={`navbar navbar-expand-lg custom_nav-container ${styles.topNav}`}>
-            <Link className={`navbar-brand ${styles.navbarBrand}`} to="/">
+        <nav className={`navbar navbar-expand-lg ${styles.topNav}`}>
+            <Link to="/" className={styles.navBarBrand}>
                 Art School
             </Link>
 
-            <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                <div className="d-flex mx-auto flex-column flex-lg-row align-items-center">
-                    <ul className="navbar-nav">
-                        <li className="nav-item active">
-                            <Link className={`nav-link ${styles.navLink}`} to="/">Home</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className={`nav-link ${styles.navLink}`} to="about">About</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className={`nav-link ${styles.navLink}`} to="course">Courses</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className={`nav-link ${styles.navLink}`} to="teacher">Teachers</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className={`nav-link ${styles.navLink}`} to="contact">Contact Us</Link>
-                        </li>
-                    </ul>
+            <div className="navbar-collapse">
+                {/* Това не е CSS курс. Това остава за да се подравнят правилно линковете за Login/Logout */}
+                <div className="mx-auto flex-column flex-lg-row align-items-center">
                 </div>
-                <div>
-                    <Link to="" className={styles.userManagementButtons}>
-                        Login
-                    </Link>
-                </div>
+
+                <ul className={styles.navBarGroup}>
+                    <Link to="/login" className={`nav-link ${styles.navLink}`}>Login</Link>
+                    <Link to="/register" className={`nav-link ${styles.navLink}`}>Register</Link>
+                    <Link to="/logout" className={`nav-link ${styles.navLink}`}>Logout</Link>
+                </ul>
             </div>
         </nav>
     );

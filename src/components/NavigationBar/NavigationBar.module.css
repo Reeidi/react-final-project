@@ -4,11 +4,17 @@
     width: 100%;
 }
 
-.navLink {
+.navBarBrand {
     color: white;
+    font-size: 1.25rem;
 }
 
-.navbarBrand {
+.navBarGroup {
+    display: flex;
+    margin-bottom: 0;
+}
+
+.navLink {
     color: white;
 }
 
