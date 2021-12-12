@@ -1,5 +1,3 @@
-import Footer from "../../Footer/Footer";
-
 export default function ContactsPage() {
     return (
         <section id="content">
@@ -41,7 +39,6 @@ export default function ContactsPage() {
                             </form>
                         </div>
                     </div>
-                    <Footer />
                 </div>
                 <div class="clear"></div>
             </div>

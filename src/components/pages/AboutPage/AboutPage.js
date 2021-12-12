@@ -1,5 +1,3 @@
-import Footer from "../../Footer/Footer";
-
 export default function AboutPage() {
     return (
         <section id="content">
@@ -53,7 +51,6 @@ export default function AboutPage() {
                             <div class="pad-2"> <a href="#" class="link-2">Read More</a> </div>
                         </div>
                     </div>
-                    <Footer />
                 </div>
                 <div class="clear"></div>
             </div>

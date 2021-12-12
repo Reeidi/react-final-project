@@ -1,5 +1,3 @@
-import Footer from "../../Footer/Footer";
-
 export default function SchedulePage() {
     return (
         <section id="content">
@@ -73,7 +71,6 @@ export default function SchedulePage() {
                             <div class="pad-2"> <a href="#" class="link-2">More Events</a> </div>
                         </div>
                     </div>
-                    <Footer />
                 </div>
                 <div class="clear"></div>
             </div>

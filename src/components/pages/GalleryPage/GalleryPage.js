@@ -1,5 +1,3 @@
-import Footer from "../../Footer/Footer";
-
 export default function GalleryPage() {
     return (
         <section id="content">
@@ -51,7 +49,6 @@ export default function GalleryPage() {
                             <div class="pad-2"> <a href="info_card.html" class="link-2">Full Gallery</a> </div>
                         </div>
                     </div>
-                    <Footer />
                 </div>
                 <div class="clear"></div>
             </div>

@@ -1,5 +1,3 @@
-import Footer from "../../Footer/Footer";
-
 export default function HomePage() {
     return (
         <section id="content">
@@ -43,7 +41,6 @@ export default function HomePage() {
                             <div class="pad-2"> <a href="#" class="link-2">Full Gallery</a> </div>
                         </div>
                     </div>
-                    <Footer />
                 </div>
                 <div class="clear"></div>
             </div>

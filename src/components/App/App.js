@@ -8,6 +8,7 @@ import SchedulePage from '../pages/SchedulePage/SchedulePage';
 import GalleryPage from '../pages/GalleryPage/GalleryPage';
 import ContactsPage from '../pages/ContactsPage/ContactsPage';
 import Register from '../Register/Register';
+import Footer from '../Footer/Footer';
 
 function App() {
     return (
@@ -24,6 +25,8 @@ function App() {
                     <Route path="/contacts" element={<ContactsPage />} />
                     <Route path="/register" element={<Register />} />
                 </Routes>
+
+                <Footer />
             </div>
         </main>
     );
