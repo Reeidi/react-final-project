@@ -1,3 +1,6 @@
+import { useNavigate } from 'react-router';
+import { useParams } from 'react-router-dom';
+
 import styles from './DrawingDetails.module.css';
 
 export default function DrawingDetails({
@@ -5,6 +8,11 @@ export default function DrawingDetails({
     author,
     info
 }) {
+    const navigate = useNavigate();
+    const params = useParams();
+    
+    console.log('params:', params);
+
     return (
         <div className={styles.container}>
             <div className={styles.containerShadow}>
@@ -18,7 +26,7 @@ export default function DrawingDetails({
                     </div>
 
                     <div className="pad-2">
-                        <input type="submit" className={styles.button} value="Edit" />
+                        <input type="submit" className={styles.button} value="Edit" onClick={() => navigate(`/drawing/${params.drawingId}/edit`)} />
                         <input type="submit" className={styles.button} value="Delete" />
                     </div>
                 </div>
@@ -26,4 +34,3 @@ export default function DrawingDetails({
         </div>
     );
 };
-
