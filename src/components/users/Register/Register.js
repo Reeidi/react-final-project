@@ -1,4 +1,4 @@
-import * as userService from "../../services/userService.js";
+import * as userService from "../../../services/userService.js";
 
 import styles from "./Register.module.css";
 
@@ -41,7 +41,7 @@ export default function Register() {
                     </label>
 
                     <div className="pad-2">
-                        <input type="submit" className={styles.sendButton} value="Send" />
+                        <input type="submit" className={styles.sendButton} value="Sign Up" />
                     </div>
                 </form>
 
