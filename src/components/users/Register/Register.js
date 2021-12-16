@@ -1,8 +1,22 @@
+import { useNavigate } from 'react-router-dom';
 import * as userService from "../../../services/userService.js";
 
 import styles from "./Register.module.css";
 
 export default function Register() {
+    const navigate = useNavigate();
+
+    async function submitHandler(eventInfo) {
+        eventInfo.preventDefault();
+
+        let formData = new FormData(eventInfo.currentTarget);
+        let { firstName, lastName, email, age, password, repeatPassword } = Object.fromEntries(formData);
+
+        let result = await userService.register(firstName, lastName, email, age, password, repeatPassword);
+        if (result) {
+            navigate('/');
+        }
+    }
     return (
         <div className={styles.container}>
             <div className={styles.containerShadow}>
@@ -49,13 +63,3 @@ export default function Register() {
         </div>
     );
 };
-
-async function submitHandler(eventInfo) {
-    eventInfo.preventDefault();
-
-    let formData = new FormData(eventInfo.currentTarget);
-    let { firstName, lastName, email, age, password, repeatPassword } = Object.fromEntries(formData);
-
-    let result = await userService.register(firstName, lastName, email, age, password, repeatPassword );
-    console.log(result);
-}

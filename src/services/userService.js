@@ -1,17 +1,13 @@
 import { makeGetRequest, makePostRequest } from "../helpers/serverCommunication.js";
-import { loginUserUrl, logoutUserUrl, registerUserUrl } from "../constants.js";
+import { loginUserUrl, registerUserUrl } from "../constants.js";
 
 export async function register(firstName, lastName, email, age, password, repeatPassword) {
     const result = await makePostRequest(registerUserUrl, { firstName, lastName, email, age, password, repeatPassword });
+    if (result.hasOwnProperty('success')) {
+        return result.success;
+    }
 
-    // if (result.hasOwnProperty('accessToken')) {
-    //     localStorage.setItem('userId', result._id);
-    //     localStorage.setItem('email', result.email);
-    //     localStorage.setItem('authToken', result.accessToken);
-    //     localStorage.setItem('userInfo', JSON.stringify(result));
-    // }
-
-    return result;
+    return false;
 };
 
 export async function login(email, password) {
@@ -28,10 +24,6 @@ export async function login(email, password) {
     }
 
     return null;
-};
-
-export async function logout() {
-    await makeGetRequest(logoutUserUrl, true);
 };
 
 export function getAuthToken() {
