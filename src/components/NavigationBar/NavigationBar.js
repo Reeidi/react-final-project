@@ -1,8 +1,25 @@
 import { Link } from 'react-router-dom';
+import { useAuthContext } from '../../contexts/AuthContext';
 
 import styles from './NavigationBar.module.css';
 
 export default function NavigationBar() {
+    const { user } = useAuthContext();
+
+    let guestNavigation = (
+        <>
+            <Link to="/login" className={`nav-link ${styles.navLink}`}>Login</Link>
+            <Link to="/register" className={`nav-link ${styles.navLink}`}>Register</Link>
+        </>
+    );
+
+    let userNavigation = (
+        <>
+            <p className={styles.navItem}>Welcome, {user?.email}</p>
+            <Link to="/logout" className={`nav-link ${styles.navLink}`}>Logout</Link>
+        </>
+    );
+
     return (
         <nav className={`navbar navbar-expand-lg ${styles.topNav}`}>
             <Link to="/" className={styles.navBarBrand}>
@@ -15,9 +32,10 @@ export default function NavigationBar() {
                 </div>
 
                 <ul className={styles.navBarGroup}>
-                    <Link to="/login" className={`nav-link ${styles.navLink}`}>Login</Link>
-                    <Link to="/register" className={`nav-link ${styles.navLink}`}>Register</Link>
-                    <Link to="/logout" className={`nav-link ${styles.navLink}`}>Logout</Link>
+                    {user?.email
+                        ? userNavigation
+                        : guestNavigation
+                    }
                 </ul>
             </div>
         </nav>

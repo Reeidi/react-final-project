@@ -1,8 +1,24 @@
-import { login } from '../../../services/userService';
+import { useNavigate } from 'react-router-dom';
+import { useAuthContext } from '../../../contexts/AuthContext';
 
 import styles from './Login.module.css';
 
 export default function Login() {
+    const { login } = useAuthContext();
+    const navigate = useNavigate();
+
+    async function submitHandler(eventInfo) {
+        eventInfo.preventDefault();
+    
+        let formData = new FormData(eventInfo.target);
+        let { email, password } = Object.fromEntries(formData);
+    
+        let result = await login(email, password);
+        if (result) {
+            navigate('/');
+        }
+    }
+
     return (
         <div className={styles.container}>
             <div className={styles.containerShadow}>
@@ -28,13 +44,3 @@ export default function Login() {
         </div>
     );
 };
-
-async function submitHandler(eventInfo) {
-    eventInfo.preventDefault();
-
-    let formData = new FormData(eventInfo.target);
-    let { email, password } = Object.fromEntries(formData);
-
-    let result = await login(email, password);
-    console.log(result);
-}

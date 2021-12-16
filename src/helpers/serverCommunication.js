@@ -1,10 +1,8 @@
 import * as userService from "../services/userService.js";
 
 async function request(url, options) {
-    console.log(options);
     try {
         const response = await fetch(url, options);
-        console.log('done');
         if (response.ok === false) {
             const error = await response.json();
             throw new Error(error.message);
@@ -47,8 +45,6 @@ export async function makeGetRequest(url, needsAuth = false) {
 }
 
 export async function makePostRequest(url, data, needsAuth = false) {
-    console.log(url);
-    console.log(data);
     return await request(url, getOptions('post', data, needsAuth));
 }
 
