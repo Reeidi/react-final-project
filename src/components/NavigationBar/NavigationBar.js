@@ -1,10 +1,18 @@
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../../contexts/AuthContext';
 
 import styles from './NavigationBar.module.css';
 
 export default function NavigationBar() {
-    const { user } = useAuthContext();
+    const { user, logout } = useAuthContext();
+    const navigate = useNavigate();
+
+    function logoutClick(eventInfo) {
+        eventInfo.preventDefault(); // stop Link from navigating!
+        logout();
+        navigate('/');
+    }
 
     let guestNavigation = (
         <>
@@ -16,7 +24,7 @@ export default function NavigationBar() {
     let userNavigation = (
         <>
             <p className={styles.navItem}>Welcome, {user?.email}</p>
-            <Link to="/logout" className={`nav-link ${styles.navLink}`}>Logout</Link>
+            <Link to="/logout" className={`nav-link ${styles.navLink}`} onClick={logoutClick}>Logout</Link>
         </>
     );
 

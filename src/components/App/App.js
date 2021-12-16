@@ -13,7 +13,6 @@ import Footer from '../Footer/Footer';
 
 import Login from '../users/Login/Login';
 import Register from '../users/Register/Register';
-import Logout from '../users/Logout/Logout';
 
 function App() {
     return (
@@ -32,7 +31,6 @@ function App() {
 
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
-                        <Route path="/logout" element={<Logout />} />
                     </Routes>
 
                     <Footer />
