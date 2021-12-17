@@ -13,6 +13,7 @@ import Footer from '../Footer/Footer';
 
 import DrawingCreate from '../DrawingCreate/DrawingCreate';
 import DrawingDetails from '../DrawingDetails/DrawingDetails';
+import DrawingEdit from '../DrawingEdit/DrawingEdit';
 
 import Login from '../users/Login/Login';
 import Register from '../users/Register/Register';
@@ -40,6 +41,7 @@ function App() {
                         {/* Drawings */}
                         <Route path="/drawing/create" element={<DrawingCreate />} />
                         <Route path="/drawing/:drawingId" element={<DrawingDetails />} />
+                        <Route path="/drawing/:drawingId/edit" element={<DrawingEdit />} />
                     </Routes>
 
                     <Footer />

@@ -13,9 +13,14 @@ export async function create(title, description, imageUrl, author) {
 export async function getAll() {
     const result = await makeGetRequest(getAllDrawingsUrl);
     return result;
-}
+};
 
 export async function get(drawingId) {
     const result = await makeGetRequest(`${getAllDrawingsUrl}/${drawingId}`);
     return result;
-}
+};
+
+export async function edit(id, title, description, imageUrl, author){
+    const result = await makePostRequest(`${getAllDrawingsUrl}/${id}/edit`, { title, description, imageUrl }, true);
+    return result;
+};

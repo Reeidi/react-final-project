@@ -1,37 +1,60 @@
-import { useState } from 'react';
-import { useLocation } from 'react-router';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 import { useParams } from 'react-router-dom';
+import { get, edit } from '../../services/drawingService';
 
 import styles from './DrawingEdit.module.css';
 
 export default function DrawingEdit() {
+    const navigate = useNavigate();
     const params = useParams();
-    console.log('params:', params);
-    console.log('location:', useLocation());
+    const [drawing, setDrawing] = useState({});
+    const [author, setAuthor] = useState({});
+    const [drawingUrl, setDrawingUrl] = useState('');
+    const [authorName, setAuthorName] = useState('');
 
-    
-        let drawing = {title: 'Sunny day', description: 'I drew a nice sunny day because I liked it.', url: 'https://www.oxy.edu/sites/default/files/landing-page/banner-images/art-art-history_main_1440x800.jpg'};
-        let author = {name: 'Ivan', age: 5};
-    
-
-    const [drawingUrl, setDrawingUrl] = useState(drawing.url);
+    useEffect(() => {
+        get(params.drawingId)
+            .then(result => {
+                setDrawing(result);
+                setAuthor(result.author);
+                setAuthorName(result.author.firstName + ' ' + result.author.lastName);
+                setDrawingUrl(result.imageUrl);
+            })
+            .catch(error => console.log(error));
+    }, []);
 
     function onUrlBlur(eventInfo) {
         setDrawingUrl(eventInfo.target.value);
     }
 
+    function submitHandler(eventInfo) {
+        eventInfo.preventDefault();
+
+        let formData = new FormData(eventInfo.target);
+        let { title, description, drawingUrl } = Object.fromEntries(formData);
+
+        edit(drawing._id, title, description, drawingUrl)
+            .then(result => {
+                if (result.success) {
+                    navigate('/gallery');
+                }
+            })
+            .catch(error => console.log(error));
+    }
+
     return (
         <div className={styles.container}>
             <div className={styles.containerShadow}>
-                <h2 className={styles.title}>{`${author.name}'s drawing`}</h2>
+                <h2 className={styles.title}>{`${author.firstName}'s drawing`}</h2>
 
                 <div className="pad-2">
                     <img src={drawingUrl} alt="" className={drawingUrl ? styles.imageBorder : styles.hidden} />
 
-                    <form method="POST">
+                    <form method="POST" onSubmit={submitHandler}>
                         <label htmlFor="drawingUrl" className={styles.label}>
                             <strong className={styles.labelStrong}>Drawing URL:</strong>
-                            <input type="select" name="drawingUrl" className={styles.input} defaultValue={drawing.url} onBlur={onUrlBlur}/>
+                            <input type="select" name="drawingUrl" className={styles.input} defaultValue={drawing.imageUrl} onBlur={onUrlBlur} />
                             <strong className="clear"></strong>
                         </label>
                         <label htmlFor="title" className={styles.label}>
@@ -41,12 +64,12 @@ export default function DrawingEdit() {
                         </label>
                         <label htmlFor="description" className={styles.label}>
                             <strong className={styles.labelStrong}>Description:</strong>
-                            <input type="select" name="description" className={styles.input} defaultValue={drawing.description}/>
+                            <input type="select" name="description" className={styles.input} defaultValue={drawing.description} />
                             <strong className="clear"></strong>
                         </label>
                         <label htmlFor="authorName" className={styles.label}>
                             <strong className={styles.labelStrong}>Author name:</strong>
-                            <input type="text" name="authorName" className={styles.input} defaultValue={author.name} disabled />
+                            <input type="text" name="authorName" className={styles.input} defaultValue={authorName} disabled />
                             <strong className="clear"></strong>
                         </label>
                         <label htmlFor="authorAge" className={styles.label}>
@@ -54,11 +77,11 @@ export default function DrawingEdit() {
                             <input type="number" name="authorAge" className={styles.input} defaultValue={author.age} disabled />
                             <strong className="clear"></strong>
                         </label>
-                    </form>
 
-                    <div className="pad-2">
-                        <input type="submit" className={styles.button} value="Save" />
-                    </div>
+                        <div className="pad-2">
+                            <input type="submit" className={styles.button} value="Save" />
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
