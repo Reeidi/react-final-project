@@ -11,6 +11,7 @@ import GalleryPage from '../pages/GalleryPage/GalleryPage';
 import ContactsPage from '../pages/ContactsPage/ContactsPage';
 import Footer from '../Footer/Footer';
 
+import DrawingCreate from '../DrawingCreate/DrawingCreate';
 import Login from '../users/Login/Login';
 import Register from '../users/Register/Register';
 
@@ -23,14 +24,19 @@ function App() {
                     <SliderHeader />
 
                     <Routes>
+                        {/* Pages */}
                         <Route path="/" element={<HomePage />} />
                         <Route path="/about" element={<AboutPage />} />
                         <Route path="/schedule" element={<SchedulePage />} />
                         <Route path="/gallery" element={<GalleryPage />} />
                         <Route path="/contacts" element={<ContactsPage />} />
 
+                        {/* User */}
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
+
+                        {/* Drawings */}
+                        <Route path="/drawing/create" element={<DrawingCreate />} />
                     </Routes>
 
                     <Footer />

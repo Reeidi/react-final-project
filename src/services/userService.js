@@ -17,7 +17,9 @@ export async function login(email, password) {
         let userInfo = {
             _id: result.user._id,
             email: result.user.email,
-            name: result.user.firstName,
+            firstName: result.user.firstName,
+            lastName: result.user.lastName,
+            age: result.user.age,
             token: result.token
         };
 

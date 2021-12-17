@@ -1,20 +1,12 @@
 import { useState } from 'react';
-import { useLocation } from 'react-router';
-import { useParams } from 'react-router-dom';
+import { useAuthContext } from '../../contexts/AuthContext';
 
-import styles from './DrawingEdit.module.css';
+import styles from './DrawingCreate.module.css';
 
-export default function DrawingEdit() {
-    const params = useParams();
-    console.log('params:', params);
-    console.log('location:', useLocation());
-
+export default function DrawingCreate() {
+    const { user } = useAuthContext();
     
-        let drawing = {title: 'Sunny day', description: 'I drew a nice sunny day because I liked it.', url: 'https://www.oxy.edu/sites/default/files/landing-page/banner-images/art-art-history_main_1440x800.jpg'};
-        let author = {name: 'Ivan', age: 5};
-    
-
-    const [drawingUrl, setDrawingUrl] = useState(drawing.url);
+    const [drawingUrl, setDrawingUrl] = useState('');
 
     function onUrlBlur(eventInfo) {
         setDrawingUrl(eventInfo.target.value);
@@ -23,7 +15,7 @@ export default function DrawingEdit() {
     return (
         <div className={styles.container}>
             <div className={styles.containerShadow}>
-                <h2 className={styles.title}>{`${author.name}'s drawing`}</h2>
+                <h2 className={styles.title}>{`${user.firstName}'s drawing`}</h2>
 
                 <div className="pad-2">
                     <img src={drawingUrl} alt="" className={drawingUrl ? styles.imageBorder : styles.hidden} />
@@ -31,27 +23,27 @@ export default function DrawingEdit() {
                     <form method="POST">
                         <label htmlFor="drawingUrl" className={styles.label}>
                             <strong className={styles.labelStrong}>Drawing URL:</strong>
-                            <input type="select" name="drawingUrl" className={styles.input} defaultValue={drawing.url} onBlur={onUrlBlur}/>
+                            <input type="select" name="drawingUrl" className={styles.input} onBlur={onUrlBlur}/>
                             <strong className="clear"></strong>
                         </label>
                         <label htmlFor="title" className={styles.label}>
                             <strong className={styles.labelStrong}>Title:</strong>
-                            <input type="select" name="title" className={styles.input} defaultValue={drawing.title} />
+                            <input type="select" name="title" className={styles.input} />
                             <strong className="clear"></strong>
                         </label>
                         <label htmlFor="description" className={styles.label}>
                             <strong className={styles.labelStrong}>Description:</strong>
-                            <input type="select" name="description" className={styles.input} defaultValue={drawing.description}/>
+                            <input type="select" name="description" className={styles.input} />
                             <strong className="clear"></strong>
                         </label>
                         <label htmlFor="authorName" className={styles.label}>
                             <strong className={styles.labelStrong}>Author name:</strong>
-                            <input type="text" name="authorName" className={styles.input} defaultValue={author.name} disabled />
+                            <input type="text" name="authorName" className={styles.input} defaultValue={`${user.firstName} ${user.lastName}`} disabled />
                             <strong className="clear"></strong>
                         </label>
                         <label htmlFor="authorAge" className={styles.label}>
                             <strong className={styles.labelStrong}>Author age:</strong>
-                            <input type="number" name="authorAge" className={styles.input} defaultValue={author.age} disabled />
+                            <input type="number" name="authorAge" className={styles.input} defaultValue={user.age} disabled />
                             <strong className="clear"></strong>
                         </label>
                     </form>

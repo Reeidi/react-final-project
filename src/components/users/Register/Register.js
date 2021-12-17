@@ -17,6 +17,7 @@ export default function Register() {
             navigate('/');
         }
     }
+    
     return (
         <div className={styles.container}>
             <div className={styles.containerShadow}>
