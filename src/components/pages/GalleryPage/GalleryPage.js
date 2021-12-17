@@ -16,7 +16,7 @@ export default function GalleryPage() {
     return (
         <section id="content">
             <div className={styles.container}>
-                <div className={styles.containerShadow}>
+                <div className={styles.containerPaperEffect}>
                     <h2 className="clr-6" style={{ textAlign: 'center' }}>Our Gallery</h2>
                     <ul>
                         {drawings.map(drawing =>
@@ -25,9 +25,9 @@ export default function GalleryPage() {
                                 imageUrl={drawing.imageUrl}
                                 imageId={drawing._id}
                                 title={drawing.title}
-                                authorName={'Ivancho'}
-                                authorAge={'5'}
-                                likes={'500'}
+                                authorName={drawing.author.firstName}
+                                authorAge={drawing.author.age}
+                                likes={drawing.votes.length}
                             />)}
                     </ul>
                     <div className="clear"></div>

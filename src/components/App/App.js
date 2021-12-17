@@ -12,6 +12,8 @@ import ContactsPage from '../pages/ContactsPage/ContactsPage';
 import Footer from '../Footer/Footer';
 
 import DrawingCreate from '../DrawingCreate/DrawingCreate';
+import DrawingDetails from '../DrawingDetails/DrawingDetails';
+
 import Login from '../users/Login/Login';
 import Register from '../users/Register/Register';
 
@@ -37,6 +39,7 @@ function App() {
 
                         {/* Drawings */}
                         <Route path="/drawing/create" element={<DrawingCreate />} />
+                        <Route path="/drawing/:drawingId" element={<DrawingDetails />} />
                     </Routes>
 
                     <Footer />

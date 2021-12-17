@@ -12,6 +12,10 @@ export async function create(title, description, imageUrl, author) {
 
 export async function getAll() {
     const result = await makeGetRequest(getAllDrawingsUrl);
-    console.log('result: ', result);
+    return result;
+}
+
+export async function get(drawingId) {
+    const result = await makeGetRequest(`${getAllDrawingsUrl}/${drawingId}`);
     return result;
 }

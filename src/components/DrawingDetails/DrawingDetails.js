@@ -1,28 +1,35 @@
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useParams } from 'react-router-dom';
+import { get } from '../../services/drawingService';
 
 import styles from './DrawingDetails.module.css';
 
 export default function DrawingDetails() {
     const navigate = useNavigate();
     const params = useParams();
+    const [drawing, setDrawing] = useState({});
+    const [author, setAuthor] = useState({});
 
-    console.log('params:', params);
-    
-
-        let drawing = {title: 'Sunny day', description: 'I drew a nice sunny day because I liked it.', url: 'https://www.oxy.edu/sites/default/files/landing-page/banner-images/art-art-history_main_1440x800.jpg'};
-        let author = {name: 'Ivan', age: 5};
-
+    useEffect(() => {
+        get(params.drawingId)
+            .then(result => {
+                setDrawing(result);
+                setAuthor(result.author);
+            })
+            .catch(error => console.log(error));
+    }, []);
 
     return (
         <div className={styles.container}>
-            <div className={styles.containerShadow}>
-                <h2 className={styles.title}>{`${author.name}'s drawing`}</h2>
+            <div className={styles.containerPaperEffect}>
+                <h2 className={styles.title}>{`${author.firstName}'s drawing`}</h2>
 
                 <div className="pad-2">
-                    <img src={drawing.url} alt="" className={styles.imageBorder} />
+                    <h1>{drawing.title}</h1>
+                    <img src={drawing.imageUrl} alt="" className={styles.imageBorder} />
                     <div className="extra-wrap clr-6">
-                        <p><strong>{author.name}, {author.age} years old</strong></p>
+                        <p><strong>{author.firstName} {author.lastName}, {author.age} years old</strong></p>
                         <p>{drawing.description}</p>
                     </div>
 

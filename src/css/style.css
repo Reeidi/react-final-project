@@ -243,11 +243,11 @@ ul.list-2 li a:hover {
 	z-index:101;
 	background:url(../images/header.jpg) right 0 no-repeat;
 }
-h1 {
+/* h1 {
 	margin:27px 0 0 63px;
 	display:inline-block;
 	z-index:100;
-}
+} */
 .lower-nav {
 	z-index:100;
 	background:url(../images/slider-bg.png) 0 0 no-repeat;
