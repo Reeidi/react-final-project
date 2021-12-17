@@ -1,15 +1,30 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../../contexts/AuthContext';
+import { create } from '../../services/drawingService';
 
 import styles from './DrawingCreate.module.css';
 
 export default function DrawingCreate() {
     const { user } = useAuthContext();
-    
+    const navigate = useNavigate();
+
     const [drawingUrl, setDrawingUrl] = useState('');
 
     function onUrlBlur(eventInfo) {
         setDrawingUrl(eventInfo.target.value);
+    }
+
+    async function submitHandler(eventInfo) {
+        eventInfo.preventDefault();
+        
+        let formData = new FormData(eventInfo.target);
+        let { title, description, drawingUrl } = Object.fromEntries(formData);
+
+        let result = await create(title, description, drawingUrl, user._id);
+        if (result) {
+            navigate('/gallery');
+        }
     }
 
     return (
@@ -20,10 +35,10 @@ export default function DrawingCreate() {
                 <div className="pad-2">
                     <img src={drawingUrl} alt="" className={drawingUrl ? styles.imageBorder : styles.hidden} />
 
-                    <form method="POST">
+                    <form method="POST" onSubmit={submitHandler}>
                         <label htmlFor="drawingUrl" className={styles.label}>
                             <strong className={styles.labelStrong}>Drawing URL:</strong>
-                            <input type="select" name="drawingUrl" className={styles.input} onBlur={onUrlBlur}/>
+                            <input type="select" name="drawingUrl" className={styles.input} onBlur={onUrlBlur} />
                             <strong className="clear"></strong>
                         </label>
                         <label htmlFor="title" className={styles.label}>
@@ -46,11 +61,11 @@ export default function DrawingCreate() {
                             <input type="number" name="authorAge" className={styles.input} defaultValue={user.age} disabled />
                             <strong className="clear"></strong>
                         </label>
-                    </form>
 
-                    <div className="pad-2">
-                        <input type="submit" className={styles.button} value="Save" />
-                    </div>
+                        <div className="pad-2">
+                            <input type="submit" className={styles.button} value="Save" />
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
