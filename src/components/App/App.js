@@ -17,37 +17,40 @@ import DrawingEdit from '../DrawingEdit/DrawingEdit';
 
 import Login from '../users/Login/Login';
 import Register from '../users/Register/Register';
+import ErrorBondary from '../ErrorBoundry/ErrorBoundry';
 
 function App() {
     return (
-        <AuthProvider>
-            <main>
-                <NavigationBar />
-                <div className="main">
-                    <SliderHeader />
+        <ErrorBondary>
+            <AuthProvider>
+                <main>
+                    <NavigationBar />
+                    <div className="main">
+                        <SliderHeader />
 
-                    <Routes>
-                        {/* Pages */}
-                        <Route path="/" element={<HomePage />} />
-                        <Route path="/about" element={<AboutPage />} />
-                        <Route path="/schedule" element={<SchedulePage />} />
-                        <Route path="/gallery" element={<GalleryPage />} />
-                        <Route path="/contacts" element={<ContactsPage />} />
+                        <Routes>
+                            {/* Pages */}
+                            <Route path="/" element={<HomePage />} />
+                            <Route path="/about" element={<AboutPage />} />
+                            <Route path="/schedule" element={<SchedulePage />} />
+                            <Route path="/gallery" element={<GalleryPage />} />
+                            <Route path="/contacts" element={<ContactsPage />} />
 
-                        {/* User */}
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/register" element={<Register />} />
+                            {/* User */}
+                            <Route path="/login" element={<Login />} />
+                            <Route path="/register" element={<Register />} />
 
-                        {/* Drawings */}
-                        <Route path="/drawing/create" element={<DrawingCreate />} />
-                        <Route path="/drawing/:drawingId" element={<DrawingDetails />} />
-                        <Route path="/drawing/:drawingId/edit" element={<DrawingEdit />} />
-                    </Routes>
+                            {/* Drawings */}
+                            <Route path="/drawing/create" element={<DrawingCreate />} />
+                            <Route path="/drawing/:drawingId" element={<DrawingDetails />} />
+                            <Route path="/drawing/:drawingId/edit" element={<DrawingEdit />} />
+                        </Routes>
 
-                    <Footer />
-                </div>
-            </main>
-        </AuthProvider>
+                        <Footer />
+                    </div>
+                </main>
+            </AuthProvider>
+        </ErrorBondary>
     );
 }
 
