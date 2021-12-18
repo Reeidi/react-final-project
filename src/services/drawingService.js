@@ -24,3 +24,8 @@ export async function edit(id, title, description, imageUrl, author){
     const result = await makePostRequest(`${getAllDrawingsUrl}/${id}/edit`, { title, description, imageUrl }, true);
     return result;
 };
+
+export async function like(imageId) {
+    const result = await makeGetRequest(`${getAllDrawingsUrl}/${imageId}/vote`, true);
+    return result;
+};

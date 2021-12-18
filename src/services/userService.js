@@ -33,8 +33,8 @@ export function getAuthToken() {
     let item = localStorage.getItem('user');
     if (item) {
         let user = JSON.parse(item)
-        return user.token;
+        return user?.token;
     }
 
-    return '';
+    return null;
 }

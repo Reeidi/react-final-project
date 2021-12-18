@@ -40,18 +40,18 @@ function getOptions(method, body, needsAuth = false) {
     return options;
 }
 
-export async function makeGetRequest(url, needsAuth = false) {
+export async function makeGetRequest(url, needsAuth = true) {
     return await request(url, getOptions('get', undefined, needsAuth))
 }
 
-export async function makePostRequest(url, data, needsAuth = false) {
+export async function makePostRequest(url, data, needsAuth = true) {
     return await request(url, getOptions('post', data, needsAuth));
 }
 
-export async function makePutRequest(url, data, needsAuth = false) {
+export async function makePutRequest(url, data, needsAuth = true) {
     return await request(url, getOptions('put', data, needsAuth));
 }
 
-export async function makeDeleteRequest(url, needsAuth = false) {
+export async function makeDeleteRequest(url, needsAuth = true) {
     return await request(url, getOptions('delete', undefined, needsAuth));
 }

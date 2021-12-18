@@ -27,7 +27,8 @@ export default function GalleryPage() {
                                 title={drawing.title}
                                 authorName={drawing.author.firstName}
                                 authorAge={drawing.author.age}
-                                likes={drawing.votes.length}
+                                userLikesImageProp={drawing.userLikesImage}
+                                likesProp={drawing.votes.length}
                             />)}
                     </ul>
                     <div className="clear"></div>

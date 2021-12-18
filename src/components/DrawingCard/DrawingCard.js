@@ -1,7 +1,11 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { like } from "../../services/drawingService"
+import { useAuthContext } from '../../contexts/AuthContext';
 import styles from "./DrawingCard.module.css";
 
-import heartIcon from "../../images/Heart-icon.png";
+import heartIcon from "../../images/heart-icon.png";
+import heartEmptyIcon from "../../images/heart-empty-icon.png";
 
 export default function DrawingCard({
     imageUrl,
@@ -9,8 +13,26 @@ export default function DrawingCard({
     title,
     authorName,
     authorAge,
-    likes
+    userLikesImageProp,
+    likesProp
 }) {
+    const { user } = useAuthContext();
+    const [userLikesImage, setUserLikesImage] = useState(userLikesImageProp);
+    const [likes, setLikesCount] = useState(likesProp);
+
+    function clickHandler(eventInfo) {
+        if (user) {
+            like(imageId)
+                .then(result => {
+                    if (result.success) {
+                        setUserLikesImage(true);
+                        setLikesCount(result.likesCount);
+                    }
+                })
+                .catch(error => console.log(error));
+        }
+    }
+
     return (
         <li className={styles.card}>
             <strong className={styles.strongText}>{title}</strong>
@@ -20,8 +42,8 @@ export default function DrawingCard({
             <div className={styles.info}>
                 <small className={styles.subtitle}>{`${authorName}, ${authorAge}`}</small>
                 <small className={styles.likes}>
-                    {likes}
-                    <img src={heartIcon} className={styles.icon} />
+                    {likes || 0}
+                    <img src={userLikesImage ? heartIcon : heartEmptyIcon} className={styles.icon} onClick={clickHandler} />
                 </small>
             </div>
         </li>

@@ -63,7 +63,7 @@
 }
 
 .input:disabled {
-    background-color: rgb(175, 175, 175);
+    background-color: rgb(200, 200, 200);
 }
 
 .label {
