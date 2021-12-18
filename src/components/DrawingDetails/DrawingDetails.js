@@ -20,6 +20,13 @@ export default function DrawingDetails() {
             .catch(error => console.log(error));
     }, []);
 
+    const controlButtons = (
+        <div className="pad-2">
+            <input type="submit" className={styles.button} value="Edit" onClick={() => navigate(`/drawing/${params.drawingId}/edit`)} />
+            <input type="submit" className={styles.button} value="Delete" />
+        </div>
+    );
+
     return (
         <div className={styles.container}>
             <div className={styles.containerPaperEffect}>
@@ -33,10 +40,12 @@ export default function DrawingDetails() {
                         <p>{drawing.description}</p>
                     </div>
 
-                    <div className="pad-2">
-                        <input type="submit" className={styles.button} value="Edit" onClick={() => navigate(`/drawing/${params.drawingId}/edit`)} />
-                        <input type="submit" className={styles.button} value="Delete" />
-                    </div>
+                    {
+                        drawing.isAuthor
+                            ? controlButtons
+                            : null
+                    }
+
                 </div>
             </div>
         </div>

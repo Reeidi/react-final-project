@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { useParams } from 'react-router-dom';
+import { useParams, Navigate } from 'react-router-dom';
+import { useAuthContext } from '../../contexts/AuthContext';
 import { get, edit } from '../../services/drawingService';
 
 import styles from './DrawingEdit.module.css';
@@ -12,6 +13,7 @@ export default function DrawingEdit() {
     const [author, setAuthor] = useState({});
     const [drawingUrl, setDrawingUrl] = useState('');
     const [authorName, setAuthorName] = useState('');
+    const { user } = useAuthContext();
 
     useEffect(() => {
         get(params.drawingId)
@@ -43,7 +45,7 @@ export default function DrawingEdit() {
             .catch(error => console.log(error));
     }
 
-    return (
+    const editPage = (
         <div className={styles.container}>
             <div className={styles.containerShadow}>
                 <h2 className={styles.title}>{`${author.firstName}'s drawing`}</h2>
@@ -86,4 +88,8 @@ export default function DrawingEdit() {
             </div>
         </div>
     );
+
+    return author._id == user._id
+        ? editPage
+        : <Navigate to='/gallery' />;
 };
