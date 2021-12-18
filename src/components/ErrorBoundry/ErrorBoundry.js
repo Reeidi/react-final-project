@@ -30,7 +30,7 @@ export default class ErrorBondary extends Component {
                 <div className="main">
                     <header className={styles.header}>
                         <h1>
-                            <Link to="/">
+                            <Link to="/" onClick={() => this.setState({error: null})}>
                                 <img src={logo} />
                             </Link>
                         </h1>
