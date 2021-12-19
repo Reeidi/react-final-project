@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useParams } from 'react-router-dom';
-import { get } from '../../services/drawingService';
+import { get, deleteDrawing } from '../../services/drawingService';
 
 import styles from './DrawingDetails.module.css';
 
@@ -20,10 +20,20 @@ export default function DrawingDetails() {
             .catch(error => console.log(error));
     }, []);
 
+    function deleteClick(eventInfo) {
+        deleteDrawing(params.drawingId)
+            .then(result => {
+                if (result.success) {
+                    navigate('/gallery');
+                }
+            })
+            .catch(error => console.log(error));
+    }
+
     const controlButtons = (
         <div className="pad-2">
             <input type="submit" className={styles.button} value="Edit" onClick={() => navigate(`/drawing/${params.drawingId}/edit`)} />
-            <input type="submit" className={styles.button} value="Delete" />
+            <input type="submit" className={styles.button} value="Delete" onClick={deleteClick} />
         </div>
     );
 

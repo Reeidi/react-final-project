@@ -89,6 +89,11 @@ export default function DrawingEdit() {
         </div>
     );
 
+    //not loaded yet
+    if (!author._id){
+        return null;
+    }
+
     return author._id == user._id
         ? editPage
         : <Navigate to='/gallery' />;

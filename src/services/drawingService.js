@@ -1,4 +1,4 @@
-import { makeGetRequest, makePostRequest } from "../helpers/serverCommunication.js";
+import { makeGetRequest, makePostRequest, makeDeleteRequest } from "../helpers/serverCommunication.js";
 import { createDrawingUrl, getAllDrawingsUrl } from "../constants.js";
 
 export async function create(title, description, imageUrl, author) {
@@ -29,3 +29,8 @@ export async function like(imageId) {
     const result = await makeGetRequest(`${getAllDrawingsUrl}/${imageId}/vote`, true);
     return result;
 };
+
+export async function deleteDrawing(imageId) {
+    const result = await makeDeleteRequest(`${getAllDrawingsUrl}/${imageId}`, true);
+    return result;
+}
