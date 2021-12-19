@@ -42,6 +42,15 @@
     width: 180px;
 }
 
+.labelSmall {
+    display: flex;
+    color: red;
+}
+
+.labelSmallHidden {
+    display: none;
+}
+
 .sendButton {
     font-size: 30px;
     line-height: 36px;

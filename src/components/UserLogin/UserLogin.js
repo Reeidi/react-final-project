@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../../contexts/AuthContext';
 
@@ -6,6 +7,7 @@ import styles from './UserLogin.module.css';
 export default function UserLogin() {
     const { login } = useAuthContext();
     const navigate = useNavigate();
+    const [error, setError] = useState(false);
 
     async function submitHandler(eventInfo) {
         eventInfo.preventDefault();
@@ -16,6 +18,8 @@ export default function UserLogin() {
         let result = await login(email, password);
         if (result) {
             navigate('/');
+        } else {
+            setError(true);
         }
     }
 
@@ -35,6 +39,8 @@ export default function UserLogin() {
                         <input type="password" name="password" className={styles.input} />
                         <strong className="clear"></strong>
                     </label>
+
+                    <p className={error ? styles.labelSmall : styles.labelSmallHidden}>Invalid email or password.</p>
 
                     <div className="pad-2">
                         <input type="submit" className={styles.sendButton} value="Log in"/>
