@@ -21,7 +21,7 @@ export default function DrawingCard({
     const [likes, setLikesCount] = useState(likesProp);
 
     function clickHandler(eventInfo) {
-        if (user) {
+        if (user && !userLikesImage) {
             like(imageId)
                 .then(result => {
                     if (result.success) {

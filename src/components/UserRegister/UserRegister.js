@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
-import * as userService from "../../../services/userService.js";
+import * as userService from "../../services/userService.js";
 
-import styles from "./Register.module.css";
+import styles from "./UserRegister.module.css";
 
-export default function Register() {
+export default function UserRegister() {
     const navigate = useNavigate();
 
     async function submitHandler(eventInfo) {

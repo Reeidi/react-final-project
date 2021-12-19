@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
-import { useAuthContext } from '../../../contexts/AuthContext';
+import { useAuthContext } from '../../contexts/AuthContext';
 
-import styles from './Login.module.css';
+import styles from './UserLogin.module.css';
 
-export default function Login() {
+export default function UserLogin() {
     const { login } = useAuthContext();
     const navigate = useNavigate();
 

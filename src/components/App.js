@@ -15,8 +15,8 @@ import DrawingCreate from './DrawingCreate/DrawingCreate';
 import DrawingDetails from './DrawingDetails/DrawingDetails';
 import DrawingEdit from './DrawingEdit/DrawingEdit';
 
-import Login from './users/Login/Login';
-import Register from './users/Register/Register';
+import UserLogin from './UserLogin/UserLogin';
+import UserRegister from './UserRegister/UserRegister';
 import ErrorBondary from './ErrorBoundry/ErrorBoundry';
 import RequireAuth from './RequireAuth';
 
@@ -39,8 +39,8 @@ function App() {
                             <Route path="/contacts" element={<ContactsPage />} />
 
                             {/* User */}
-                            <Route path="/login" element={<Login />} />
-                            <Route path="/register" element={<Register />} />
+                            <Route path="/login" element={<UserLogin />} />
+                            <Route path="/register" element={<UserRegister />} />
 
                             {/* Drawings */}
                             <Route path="/drawing/create" element={<DrawingCreate />} />
