@@ -1,0 +1,17 @@
+.sectionTitle {
+    color: #bfaf00;
+    padding-bottom: 5px;
+    text-decoration: underline;
+}
+
+.sideText {
+    padding-bottom: 12px;
+    color: wheat;
+    font-size: 15px;
+}
+
+.sideTextTitle {
+    padding-bottom: 12px;
+    color: white;
+    font-size: 17px;
+}
