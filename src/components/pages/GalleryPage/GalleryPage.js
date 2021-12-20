@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { getAll } from "../../../services/drawingService";
 import DrawingCard from "../../DrawingCard/DrawingCard";
 
@@ -17,7 +18,7 @@ export default function GalleryPage() {
         <section id="content">
             <div className={styles.container}>
                 <div className={styles.containerPaperEffect}>
-                    <h2 className="clr-6" style={{ textAlign: 'center' }}>Our Gallery</h2>
+                    <h2 className={styles.sectionTitle} style={{ textAlign: 'center' }}>Our Gallery</h2>
                     <ul>
                         {drawings.map(drawing =>
                             <DrawingCard
@@ -31,6 +32,9 @@ export default function GalleryPage() {
                                 likesProp={drawing.votes.length}
                             />)}
                     </ul>
+                    <div className={styles.buttonDiv}>
+                        <Link to="/drawing/create" className={styles.button}>Add drawing</Link>
+                    </div>
                     <div className="clear"></div>
                 </div>
             </div>

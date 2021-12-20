@@ -43,9 +43,9 @@ function App() {
                             <Route path="/register" element={<UserRegister />} />
 
                             {/* Drawings */}
-                            <Route path="/drawing/create" element={<DrawingCreate />} />
                             <Route path="/drawing/:drawingId" element={<DrawingDetails />} />
                             <Route element={<RequireAuth />}>
+                                <Route path="/drawing/create" element={<DrawingCreate />} />
                                 <Route path="/drawing/:drawingId/edit" element={<DrawingEdit />} />
                             </Route>
                         </Routes>
