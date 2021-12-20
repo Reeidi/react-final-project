@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../../contexts/AuthContext';
 import { create } from '../../services/drawingService';
@@ -8,16 +9,27 @@ import styles from './DrawingCreate.module.css';
 export default function DrawingCreate() {
     const { user } = useAuthContext();
     const navigate = useNavigate();
-
+    const [errors, setErrors] = useState({ drawingUrl: null });
     const [drawingUrl, setDrawingUrl] = useState('');
 
     function onUrlBlur(eventInfo) {
-        setDrawingUrl(eventInfo.target.value);
+        let url = eventInfo.target.value;
+        if (isUrl(url)) {
+            setErrors(errors => ({ ...errors, drawingUrl: null }));
+            setDrawingUrl(eventInfo.target.value);
+        } else {
+            setErrors(errors => ({ ...errors, drawingUrl: 'Invalid URL.' }));
+            setDrawingUrl(null);
+        }
     }
 
     async function submitHandler(eventInfo) {
         eventInfo.preventDefault();
-        
+
+        if (errors.drawingUrl) {
+            return;
+        }
+
         let formData = new FormData(eventInfo.target);
         let { title, description, drawingUrl } = Object.fromEntries(formData);
 
@@ -41,6 +53,8 @@ export default function DrawingCreate() {
                             <input type="select" name="drawingUrl" className={styles.input} onBlur={onUrlBlur} />
                             <strong className="clear"></strong>
                         </label>
+                        <Alert variant='danger' show={errors.drawingUrl}>{errors.drawingUrl}</Alert>
+
                         <label htmlFor="title" className={styles.label}>
                             <strong className={styles.labelStrong}>Title:</strong>
                             <input type="select" name="title" className={styles.input} />
@@ -71,3 +85,8 @@ export default function DrawingCreate() {
         </div>
     );
 };
+
+function isUrl(s) {
+    var regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
+    return regexp.test(s);
+}

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router';
 import { useParams, Navigate } from 'react-router-dom';
 import { useAuthContext } from '../../contexts/AuthContext';
@@ -14,6 +15,7 @@ export default function DrawingEdit() {
     const [drawingUrl, setDrawingUrl] = useState('');
     const [authorName, setAuthorName] = useState('');
     const { user } = useAuthContext();
+    const [errors, setErrors] = useState({ drawingUrl: null });
 
     useEffect(() => {
         get(params.drawingId)
@@ -27,11 +29,22 @@ export default function DrawingEdit() {
     }, []);
 
     function onUrlBlur(eventInfo) {
-        setDrawingUrl(eventInfo.target.value);
+        let url = eventInfo.target.value;
+        if (isUrl(url)) {
+            setErrors(errors => ({ ...errors, drawingUrl: null }));
+            setDrawingUrl(eventInfo.target.value);
+        } else {
+            setErrors(errors => ({ ...errors, drawingUrl: 'Invalid URL.' }));
+            setDrawingUrl(null);
+        }
     }
 
     function submitHandler(eventInfo) {
         eventInfo.preventDefault();
+
+        if (errors.drawingUrl) {
+            return;
+        }
 
         let formData = new FormData(eventInfo.target);
         let { title, description, drawingUrl } = Object.fromEntries(formData);
@@ -59,6 +72,8 @@ export default function DrawingEdit() {
                             <input type="select" name="drawingUrl" className={styles.input} defaultValue={drawing.imageUrl} onBlur={onUrlBlur} />
                             <strong className="clear"></strong>
                         </label>
+                        <Alert variant='danger' show={errors.drawingUrl}>{errors.drawingUrl}</Alert>
+
                         <label htmlFor="title" className={styles.label}>
                             <strong className={styles.labelStrong}>Title:</strong>
                             <input type="select" name="title" className={styles.input} defaultValue={drawing.title} />
@@ -90,7 +105,7 @@ export default function DrawingEdit() {
     );
 
     //not loaded yet
-    if (!author._id){
+    if (!author._id) {
         return null;
     }
 
@@ -98,3 +113,8 @@ export default function DrawingEdit() {
         ? editPage
         : <Navigate to='/gallery' />;
 };
+
+function isUrl(s) {
+    var regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
+    return regexp.test(s);
+}
