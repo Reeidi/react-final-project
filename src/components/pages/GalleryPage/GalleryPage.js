@@ -19,6 +19,10 @@ export default function GalleryPage() {
             <div className={styles.container}>
                 <div className={styles.containerPaperEffect}>
                     <h2 className={styles.sectionTitle} style={{ textAlign: 'center' }}>Our Gallery</h2>
+                    <div className={styles.buttonDiv}>
+                        <Link to="/mine" className={styles.button}>My drawings</Link>
+                        <Link to="/drawing/create" className={styles.button}>Add drawing</Link>
+                    </div>
                     <ul>
                         {drawings.map(drawing =>
                             <DrawingCard
@@ -32,9 +36,6 @@ export default function GalleryPage() {
                                 likesProp={drawing.votes.length}
                             />)}
                     </ul>
-                    <div className={styles.buttonDiv}>
-                        <Link to="/drawing/create" className={styles.button}>Add drawing</Link>
-                    </div>
                     <div className="clear"></div>
                 </div>
             </div>
