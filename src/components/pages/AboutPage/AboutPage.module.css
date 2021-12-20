@@ -1,0 +1,26 @@
+.sectionTitle {
+    color: #00ae35;
+    padding-bottom: 5px;
+    text-decoration: underline;
+}
+
+.margins1 {
+    margin-top: 40px;
+    padding-bottom: 6px;
+}
+
+.sideText {
+    padding-bottom: 12px;
+    color: rgb(0, 95, 0);
+    font-size: 15px;
+}
+
+.link {
+    font-size: 30px;
+    line-height: 36px;
+    font-weight: bold;
+    font-family: 'Cabin Sketch', cursive;
+    letter-spacing: -1px;
+    display: inline-block;
+    color: #b30800;
+}
