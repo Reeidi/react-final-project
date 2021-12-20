@@ -33,15 +33,3 @@
     align-self: flex-start;
     padding: 4px 30px 0px 0px;
 }
-
-.likes {
-    font-weight: lighter;
-    align-self: flex-end;
-    padding: 4px 0px 0px 0px;
-}
-
-.icon {
-    max-width: 30px;
-    max-height: 20px;
-    padding: 0px 0px 0px 3px;
-}

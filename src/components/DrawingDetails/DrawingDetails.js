@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useParams } from 'react-router-dom';
 import { get, deleteDrawing } from '../../services/drawingService';
+import LikesCounter from '../LikesCounter/LikesCounter';
 
 import styles from './DrawingDetails.module.css';
 
@@ -51,6 +52,14 @@ export default function DrawingDetails() {
                     </div>
 
                     {
+                        //show after loading
+                        drawing.votes
+                            ? <LikesCounter likesProp={drawing.votes.length} userLikesImageProp={drawing.userLikesImage} imageId={params.drawingId} />
+                            : null
+                    }
+
+                    {
+                        //show only to author
                         drawing.isAuthor
                             ? controlButtons
                             : null
