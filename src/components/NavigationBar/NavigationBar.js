@@ -24,6 +24,7 @@ export default function NavigationBar() {
     let userNavigation = (
         <>
             <p className={styles.navItem}>Welcome, {user?.email}</p>
+            <Link to="/mine" className={`nav-link ${styles.navLink}`}>My drawings</Link>
             <Link to="/drawing/create" className={`nav-link ${styles.navLink}`}>Add drawing</Link>
             <Link to="/logout" className={`nav-link ${styles.navLink}`} onClick={logoutClick}>Logout</Link>
         </>

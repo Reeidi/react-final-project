@@ -19,6 +19,7 @@ import UserLogin from './UserLogin/UserLogin';
 import UserRegister from './UserRegister/UserRegister';
 import ErrorBondary from './ErrorBoundry/ErrorBoundry';
 import RequireAuth from './RequireAuth';
+import MyDrawingsPage from './pages/MyDrawingsPage/MyDrawingsPage';
 
 {/* https://youtu.be/PkclaCE-Iug?t=3107 */ }
 function App() {
@@ -47,6 +48,7 @@ function App() {
                             <Route element={<RequireAuth />}>
                                 <Route path="/drawing/create" element={<DrawingCreate />} />
                                 <Route path="/drawing/:drawingId/edit" element={<DrawingEdit />} />
+                                <Route path="/mine" element={<MyDrawingsPage />} />
                             </Route>
                         </Routes>
 
