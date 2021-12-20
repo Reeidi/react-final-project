@@ -7,7 +7,7 @@ export default function EventCard({
             <p><strong>{date}</strong></p>
             <p>
                 {text}
-                <a href="#" class="link"> More...</a>
+                <a href="#" className="link"> More...</a>
             </p>
         </div>
     );

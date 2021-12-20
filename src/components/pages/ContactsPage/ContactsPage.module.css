@@ -1,0 +1,74 @@
+.map {
+    width: 300px;
+    height: 260px;
+    border: #fff 10px solid;
+    background: #fff;
+    margin-top: 8px;
+}
+
+.sectionTitle {
+    color: #a400b3;
+    padding-bottom: 5px;
+    text-decoration: underline;
+}
+
+.input {
+    border: #e0e0e1 1px solid;
+    background: #fff;
+    font-size: 14px;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    color: #000;
+    padding: 3px 10px 5px 10px;
+    outline: medium none;
+    width: 350px;
+    height: 17px;
+    float: left;
+    box-shadow: 0 0 3px #c1c1c1;
+}
+
+.textArea {
+    border: #e0e0e1 1px solid;
+    background: #fff;
+    font-size: 14px;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    color: #000;
+    padding: 3px 10px 5px 10px;
+    outline: medium none;
+    width: 350px;
+    height: 150px;
+    float: left;
+    box-shadow: 0 0 3px #c1c1c1;
+}
+
+.label {
+    position: relative;
+    display: flex;
+    min-height: 35px;
+    align-items: center;
+    justify-content: center;
+}
+
+.labelStrong {
+    width: 180px;
+}
+
+.sendButton {
+    font-size: 30px;
+    line-height: 36px;
+    color: #0072ff;
+    font-weight: bold;
+    font-family: 'Cabin Sketch', cursive;
+    letter-spacing: -1px;
+    display: inline-block;
+    background-color: transparent;
+}
+
+.sendButton:hover {
+    color: #b30800;
+    text-decoration: underline;
+}
+
+.sendButton:active {
+    color: #00ae35;
+    text-decoration: underline;
+}

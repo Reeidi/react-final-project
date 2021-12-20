@@ -25,7 +25,7 @@ export default function HomePage() {
                     <div className="block-1">
                         <div className="block-1-shadow">
                             <h2 className={styles.sectionTitle}>News</h2>
-                            <p class="clr-6">
+                            <p className="clr-6">
                                 <strong>Today...</strong>
                             </p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -34,7 +34,9 @@ export default function HomePage() {
                             culpa qui officia deserunt mollit anim id est laborum.
 
                             <div className="clear"></div>
-                            <div className="pad-2"> <Link to="/about" className={`${styles.link} ${styles.green}`}>About</Link> </div>
+                            <div className="pad-2">
+                                <Link to="/about" className={`${styles.link} ${styles.green}`}>About</Link>
+                            </div>
                         </div>
                     </div>
                 </div>
