@@ -7,3 +7,5 @@ export const createDrawingUrl = `${baseUrl}/posts/create`;
 export const getAllDrawingsUrl = `${baseUrl}/posts`;
 
 export const contact = `${baseUrl}/contact`;
+
+export const events = `${baseUrl}/event`;

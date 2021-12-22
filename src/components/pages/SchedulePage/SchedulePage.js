@@ -1,9 +1,19 @@
+import { useEffect, useState } from "react";
+import { getAll } from "../../../services/eventService";
 import EventCard from "../../EventCard/EventCard";
 import ScheduleItem from "../../ScheduleItem/ScheduleItem";
 
 import styles from "./SchedulePage.module.css";
 
 export default function SchedulePage() {
+    const [events, setEvents] = useState([]);
+
+    useEffect(() => {
+        getAll()
+            .then(result => setEvents(result.result))
+            .catch(error => console.log(error));
+    }, []);
+
     return (
         <section id="content">
             <div className="container_12">
@@ -51,24 +61,18 @@ export default function SchedulePage() {
                             <h2 className={styles.sectionTitle}>Events Schedule</h2>
                             <div className="wrap">
                                 <div className="box-2">
-                                    <EventCard
-                                        date="April 10, 2022"
-                                        text="Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, velillum dolore."
-                                    />
-                                    <EventCard
-                                        date="March 22, 2022"
-                                        text="Teugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum "
-                                    />
+                                    {
+                                        events
+                                            .filter((event, index) => index % 2 === 0)
+                                            .map(event => <EventCard key={event._id} date={event.title} text={event.description} />)
+                                    }
                                 </div>
                                 <div className="box-2 last">
-                                    <EventCard
-                                        date="April 04, 2022"
-                                        text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore."
-                                    />
-                                    <EventCard
-                                        date="March 14, 2022"
-                                        text="At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus."
-                                    />
+                                    {
+                                        events
+                                            .filter((event, index) => index % 2 !== 0)
+                                            .map(event => <EventCard key={event._id} date={event.title} text={event.description} />)
+                                    }
                                 </div>
                             </div>
                         </div>
