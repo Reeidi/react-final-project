@@ -24,6 +24,11 @@ export default function MyDrawingsPage() {
             <div className={styles.container}>
                 <div className={styles.containerPaperEffect}>
                     <h2 className={styles.sectionTitle} style={{ textAlign: 'center' }}>{user.firstName}'s drawings</h2>
+
+                    <div className={styles.buttonDiv}>
+                        <Link to="/drawing/create" className={styles.button}>Add drawing</Link>
+                    </div>
+
                     <ul>
                         {drawings.map(drawing =>
                             <DrawingCard
@@ -37,9 +42,7 @@ export default function MyDrawingsPage() {
                                 likesProp={drawing.votes.length}
                             />)}
                     </ul>
-                    <div className={styles.buttonDiv}>
-                        <Link to="/drawing/create" className={styles.button}>Add drawing</Link>
-                    </div>
+
                     <div className="clear"></div>
                 </div>
             </div>
