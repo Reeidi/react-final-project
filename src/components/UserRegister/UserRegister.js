@@ -7,6 +7,7 @@ import styles from "./UserRegister.module.css";
 
 export default function UserRegister() {
     const navigate = useNavigate();
+    const [error, setError] = useState(null);
     const [errors, setErrors] = useState({firstName: null, lastName: null, email: null, password: null, repeatPassword: null});
 
     async function submitHandler(eventInfo) {
@@ -20,8 +21,11 @@ export default function UserRegister() {
         let { firstName, lastName, email, age, password, repeatPassword } = Object.fromEntries(formData);
 
         let result = await userService.register(firstName, lastName, email, age, password, repeatPassword);
-        if (result) {
+        if (result.success) {
             navigate('/');
+        } else {
+            console.log(result);
+            setError(result.error);
         }
     }
 
@@ -122,7 +126,7 @@ export default function UserRegister() {
                         <input type="submit" className={styles.sendButton} value="Sign Up" />
                     </div>
                 </form>
-
+                <Alert variant='danger' show={error}>{error}</Alert>
             </div>
         </div>
     );

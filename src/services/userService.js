@@ -3,11 +3,7 @@ import { loginUserUrl, registerUserUrl } from "../constants.js";
 
 export async function register(firstName, lastName, email, age, password, repeatPassword) {
     const result = await makePostRequest(registerUserUrl, { firstName, lastName, email, age, password, repeatPassword });
-    if (result.hasOwnProperty('success')) {
-        return result.success;
-    }
-
-    return false;
+    return result;
 };
 
 export async function login(email, password) {

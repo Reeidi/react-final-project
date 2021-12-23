@@ -23,6 +23,8 @@ export default function GalleryPage() {
         </div>
     );
 
+    // throw new Error();
+
     return (
         <section id="content">
             <div className={styles.container}>
